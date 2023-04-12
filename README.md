@@ -34,9 +34,9 @@ Alternatively, you can run each component separately as described below.
 
 ```bash
 kustomize build ./kubernetes | kubectl apply -f -
-kubectl port-forward -n example-hotrod service/example-hotrod 8080:frontend
+kubectl port-forward -n hotrod service/hotrod 8080:frontend
 # In another terminal
-kubectl port-forward -n example-hotrod service/jaeger 16686:frontend
+kubectl port-forward -n hotrod service/jaeger 16686:frontend
 
 # To cleanup
 kustomize build ./kubernetes | kubectl delete -f -
@@ -74,7 +74,7 @@ docker run \
   --link jaeger \
   --env OTEL_EXPORTER_JAEGER_ENDPOINT=http://jaeger:14268/api/traces \
   -p8080-8083:8080-8083 \
-  jaegertracing/example-hotrod:latest \
+  jaegertracing/hotrod:latest \
   all
 ```
 

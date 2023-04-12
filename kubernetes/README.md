@@ -6,9 +6,9 @@ Example k8s manifests for deploying the [hotrod app](..) to your k8s environment
 
 ```bash
 kustomize build . | kubectl apply -f -
-kubectl port-forward -n example-hotrod service/example-hotrod 8080:frontend
+kubectl port-forward -n hotrod service/hotrod 8080:frontend
 # In another terminal
-kubectl port-forward -n example-hotrod service/jaeger 16686:frontend
+kubectl port-forward -n hotrod service/jaeger 16686:frontend
 
 # To cleanup
 kustomize build . | kubectl delete -f -

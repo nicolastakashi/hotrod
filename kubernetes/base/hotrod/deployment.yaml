@@ -2,28 +2,29 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: example-hotrod
-  name: example-hotrod
+    app: hotrod
+  name: hotrod
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: example-hotrod
+      app: hotrod
   strategy: {}
   template:
     metadata:
       labels:
-        app: example-hotrod
+        app: hotrod
     spec:
       containers:
-      - image: jaegertracing/example-hotrod:latest
-        name: example-hotrod
+      - image: hotrod-hotrod
+        name: hotrod
+        imagePullPolicy: Never
         args: ["all"]
         env:
-          - name: JAEGER_AGENT_HOST
-            value: localhost
-          - name: JAEGER_AGENT_PORT
-            value: "6831"
+          - name: PYROSCOPE_APPLICATION_NAME
+            value: hotrod
+          - name: PYROSCOPE_SERVER_ADDRESS
+            value: "http://pyroscope-server.default.svc.cluster.local:4040"
         ports:
           - containerPort: 8080
             name: frontend

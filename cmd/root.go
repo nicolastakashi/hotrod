@@ -24,9 +24,6 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"github.com/jaegertracing/jaeger/internal/jaegerclientenv2otel"
-	"github.com/jaegertracing/jaeger/internal/metrics/expvar"
-	"github.com/jaegertracing/jaeger/internal/metrics/prometheus"
 	"github.com/jaegertracing/jaeger/pkg/metrics"
 	"github.com/nicolastakashi/hotrod/services/config"
 )
@@ -105,14 +102,14 @@ func onInitialize() {
 	}
 	logger, _ = zap.NewDevelopment(zapOptions...)
 
-	jaegerclientenv2otel.MapJaegerToOtelEnvVars(logger)
+	// jaegerclientenv2otel.MapJaegerToOtelEnvVars(logger)
 
 	switch metricsBackend {
 	case "expvar":
-		metricsFactory = expvar.NewFactory(10) // 10 buckets for histograms
+		// metricsFactory = expvar.NewFactory(10) // 10 buckets for histograms
 		logger.Info("Using expvar as metrics backend")
 	case "prometheus":
-		metricsFactory = prometheus.New().Namespace(metrics.NSOptions{Name: "hotrod", Tags: nil})
+		// metricsFactory = prometheus.New().Namespace(metrics.NSOptions{Name: "hotrod", Tags: nil})
 		logger.Info("Using Prometheus as metrics backend")
 	default:
 		logger.Fatal("unsupported metrics backend " + metricsBackend)

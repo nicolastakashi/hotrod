@@ -7,7 +7,7 @@ bases:
 # Leaving this uncommented will install both hotrod and an example all-in-one
   - base/jaeger-all-in-one
 
-namespace: example-hotrod
+namespace: hotrod
 
 resources:
   - namespace.yaml
